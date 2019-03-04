@@ -1,0 +1,136 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Operation of installing zhpy1.7.4 in Windows7</title>
+</head>
+
+<body>
+
+<p>Winows7 的 Python3.7.2 环境下安装 zhpy1.7.4 的操作<br>
+<br>
+操作步骤：</p>
+<p>（1）下载 Python 的 Python3.7.2 Win32 版本并安装到 C:\Program Files 
+(x86)\Python\Python37-32；</p>
+<p>（2）将 zhpy1.7.4 的压缩包文件解包到目录 C:\Program Files (x86)\Python\Python37-32<br>
+（3）保持互联网的网络连接状态；<br>
+（4）运行windows7的 cmd，进入 DOS 命令窗口；<br>
+（5）cd C:\Program Files (x86)\Python\Python37-32<br>
+（6）dir &gt; 安装前目录内容.txt<br>
+（7）python setup.py install &gt; 安装过程记录.txt<br>
+（8）查 安装过程记录.txt ,正常安装成功。<br>
+<br>
+安装操作顺利完成。但是，原程序里含有与 Python3 不兼容的 Python2 命令，主要是 print 和 
+except，需按照出错信息的提示去修改相关的程序源码。出错信息是：<br>
+<br>
+<br>
+<font color="#FF00FF">&quot;...\python37-32\build\dbist.win32\egg\zhpy\commandline.py&quot;,line 
+129<br>
+&quot;...\python37-32\build\dbist.win32\egg\zhpy\info.py&quot;,line 61<br>
+&quot;...\python37-32\build\dbist.win32\egg\zhpy\pyparsing.py&quot;,line 930<br>
+&quot;...\python37-32\build\dbist.win32\egg\zhpy\pyzh.py&quot;,line 63<br>
+&quot;...\python37-32\build\dbist.win32\egg\zhpy\zhpy.py&quot;,line 93<br>
+&quot;...\python37-32\lib\site-packages\zhpy-17.7.4-py3.7.egg\zhpy\commandline.py&quot;,line 
+129<br>
+&quot;...\python37-32\lib\site-packages\zhpy-17.7.4-py3.7.egg\zhpy\info.py&quot;,line 61<br>
+&quot;...\python37-32\lib\site-packages\zhpy-17.7.4-py3.7.egg\zhpy\pyparsing.py&quot;,line 
+930<br>
+&quot;...\python37-32\lib\site-packages\zhpy-17.7.4-py3.7.egg\zhpy\pyzh.py&quot;,line 63<br>
+&quot;...\python37-32\lib\site-packages\zhpy-17.7.4-py3.7.egg\zhpy\zhpy.py&quot;,line 93</font><br>
+<br>
+其中，上述后五项错误与前面的五项雷同，其实，它们都出自于 zhpy 目录下的相同名文件。所以，修改 zhpy 
+目录下的相同名文件的Python版本兼容性语句的隐形瑕疵。然后，将修改后的新文件复制到上述相关目录 ...\build\dbist.win32\egg\zhpy 
+和 ...\lib\site-packages\zhpy-17.7.4-py3.7.egg\zhpy，重复前述（5）操作步骤。</p>
+<p>最后，做安装成功与否的验证：</p>
+<p><img border="0" src="kOzAYT.jpg" width="641" height="109"></p>
+<p>https://s2.ax1x.com/2019/03/04/kOzAYT.jpg</p>
+<p>
+<br>
+<b>附.安装过程记录.txt 的文件内容如下：</b></p>
+<hr>
+<p>running install<br>
+running bdist_egg<br>
+running egg_info<br>
+writing zhpy.egg-info\PKG-INFO<br>
+writing dependency_links to zhpy.egg-info\dependency_links.txt<br>
+writing entry points to zhpy.egg-info\entry_points.txt<br>
+writing requirements to zhpy.egg-info\requires.txt<br>
+writing top-level names to zhpy.egg-info\top_level.txt<br>
+reading manifest file 'zhpy.egg-info\SOURCES.txt'<br>
+writing manifest file 'zhpy.egg-info\SOURCES.txt'<br>
+installing library code to build\bdist.win32\egg<br>
+running install_lib<br>
+running build_py<br>
+creating build\bdist.win32\egg<br>
+creating build\bdist.win32\egg\ext<br>
+copying build\lib\ext\pygmentplugin.py -&gt; build\bdist.win32\egg\ext<br>
+copying build\lib\ext\__init__.py -&gt; build\bdist.win32\egg\ext<br>
+byte-compiling build\bdist.win32\egg\ext\pygmentplugin.py to 
+pygmentplugin.cpython-37.pyc<br>
+byte-compiling build\bdist.win32\egg\ext\__init__.py to __init__.cpython-37.pyc<br>
+creating build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\PKG-INFO -&gt; build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\SOURCES.txt -&gt; build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\dependency_links.txt -&gt; build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\entry_points.txt -&gt; build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\not-zip-safe -&gt; build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\requires.txt -&gt; build\bdist.win32\egg\EGG-INFO<br>
+copying zhpy.egg-info\top_level.txt -&gt; build\bdist.win32\egg\EGG-INFO<br>
+creating 'dist\zhpy-1.7.4-py3.7.egg' and adding 'build\bdist.win32\egg' to it<br>
+removing 'build\bdist.win32\egg' (and everything under it)<br>
+Processing zhpy-1.7.4-py3.7.egg<br>
+removing 'c:\program files 
+(x86)\python\python37-32\lib\site-packages\zhpy-1.7.4- <br>
+py3.7.egg' (and everything under it)<br>
+creating c:\program files 
+(x86)\python\python37-32\lib\site-packages\zhpy-1.7.4-py3.7.egg<br>
+Extracting zhpy-1.7.4-py3.7.egg to c:\program files 
+(x86)\python\python37-32\lib\site- <br>
+packages<br>
+zhpy 1.7.4 is already the active version in easy-install.pth<br>
+Installing zhpy-script.py script to C:\Program Files 
+(x86)\Python\Python37-32\Scripts<br>
+Installing zhpy.exe script to C:\Program Files (x86)\Python\Python37-32\Scripts<br>
+Installing zhpy.exe.manifest script to C:\Program Files 
+(x86)\Python\Python37-32\Scripts<br>
+<br>
+Installed c:\program files 
+(x86)\python\python37-32\lib\site-packages\zhpy-1.7.4- <br>
+py3.7.egg<br>
+Processing dependencies for zhpy==1.7.4<br>
+Searching for chardet&gt;=1.0.1<br>
+Reading https://pypi.org/simple/chardet/<br>
+Downloading <br>
+https://files.pythonhosted.org/packages/bc/a9/01ffebfb562e4274b6487b4bb1ddec7ca55ec7510b2
+<br>
+2e4c51f14098443b8/chardet-3.0.4-py2.py3-none- <br>
+any.whl#sha256=fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691<br>
+Best match: chardet 3.0.4<br>
+Processing chardet-3.0.4-py2.py3-none-any.whl<br>
+Installing chardet-3.0.4-py2.py3-none-any.whl to c:\program files 
+(x86)\python\python37- <br>
+32\lib\site-packages<br>
+Adding chardet 3.0.4 to easy-install.pth file<br>
+Installing chardetect-script.py script to C:\Program Files 
+(x86)\Python\Python37- <br>
+32\Scripts<br>
+Installing chardetect.exe script to C:\Program Files 
+(x86)\Python\Python37-32\Scripts<br>
+Installing chardetect.exe.manifest script to C:\Program Files 
+(x86)\Python\Python37- <br>
+32\Scripts<br>
+<br>
+Installed c:\program files 
+(x86)\python\python37-32\lib\site-packages\chardet-3.0.4- <br>
+py3.7.egg<br>
+Finished processing dependencies for zhpy==1.7.4</p>
+<hr>
+<p>　</p>
+<p>
+<br>
+　</p>
+
+</body>
+
+</html>
